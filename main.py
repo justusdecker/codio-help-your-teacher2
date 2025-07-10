@@ -1,4 +1,3 @@
-
 def isnumeric(text:str) -> bool:
     "returns if ``text`` is a float or integer. Negative values will be not taken into account, there will be False"
     
@@ -33,15 +32,15 @@ def get_student_info() -> dict[str, str | float]:
 
 def get_grade(subject: str) -> float:
     """ get grade from a student """
-    user_input = input(f"Enter grade for [{subject}]:\n>>> ")
-    while not isnumeric(user_input):
-        print(f"Input invalid!")
+    while 1:
         user_input = input(f"Enter grade for [{subject}]:\n>>> ")
         if isnumeric(user_input):
-            if float(user_input) > 100 or float(user_input) < 0:
-                user_input = "" # reset the user input if out of range!
-    return float(user_input)
-
+            grade = float(user_input)
+            if 0 <= grade <= 100:
+                return float(user_input)
+            else:
+                print('Input invalid! Grade must be between 0 and 100.')
+                
 def print_student_info(students: list[dict]) -> None:
     """ print the ``name``, ``grades`` of each class, ``average`` grade & ``best`` grade for each student """
     print(f"{'Best':<15}{'english':<8}{'math':<5}{'avg':<6}best")
